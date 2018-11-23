@@ -19,6 +19,7 @@ fi
 mkdir -p kstych/custom
 mkdir -p kstych/var/lib/mysql
 mkdir -p kstych/etc/letsencrypt
+chmod -R 777 kstych
 
 echo "/app" > kstych/custom/.gitignore
 
