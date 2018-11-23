@@ -1,6 +1,6 @@
 Kstych Framework License
 
-Copyright (c) 2018 Kstych Private Limited
+Copyright (c) 2018 Kstych Private Limited. All rights reserved.
 
 1. Free development Usages on localhost
 
@@ -13,6 +13,18 @@ available in development.
 
 To run this software in any other environment (commercial or otherwise) a valid
 license is required to be purchased from https://kstych.com
+
+3. Protected Source Code
+
+All source code contained within the docker image (provided or downloaded during 
+updates) are property of Kstych Private Limited, copying or changing is not allowed.
+
+4. User Owns What they Build
+
+All additional configuration/sources built by the developers/users including 
+databases  and other files that are externally stored by the software remains
+withing the ownership of developers/users
+
 
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
