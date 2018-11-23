@@ -83,4 +83,4 @@ fi
 
 
 echo "Running Framework Image"
-docker run -it -v `pwd`/kstych/var/lib/mysql:/var/lib/mysql -v `pwd`/kstych/custom:/home/Kstych/Framework/custom -v `pwd`/kstych/etc/letsencrypt:/etc/letsencrypt -p 80:80 -p 4443:443 -p 8089:8089 -p 8088:8088 -e KSTYCH_LICENSE="$ARG1" -e KSTYCH_DOMAIN="$ARG2" framework
+docker run -it -v `pwd`/kstych/var/lib/mysql:/var/lib/mysql -v `pwd`/kstych/custom:/home/Kstych/Framework/custom -v `pwd`/kstych/etc/letsencrypt:/etc/letsencrypt -p 80:80 -p 4443:443 -p 8089:8089 -p 8088:8088 -e KSTYCH_LICENSE="$ARG1" -e KSTYCH_DOMAIN="$ARG2" kstych/framework
