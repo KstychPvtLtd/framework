@@ -2,8 +2,8 @@
 
 ARG1=${1:-localhost}
 ARG2=${2:-http://localhost}
-ARG3=${2:-localhost}
-ARG4=${2:-127.0.0.1}
+ARG3=${3:-localhost}
+ARG4=${4:-127.0.0.1}
 
 APIKEY=`cat /dev/urandom |head -c 32 | base64`
 
