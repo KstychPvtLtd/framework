@@ -10,7 +10,19 @@ LowCode framework for general purpose App development in a fraction of time
 
 
 ## Features
+E-R Automation
 
+MVC Automation
+
+CRUD Automation
+
+Workflow Automation
+
+Inbuilt Defaults
+
+Full spectrum customization
+
+Extended Views/Business Logic
 
 
 
@@ -23,6 +35,7 @@ Kstych Framework is Free to run as localhost (development mode intended as local
 
 By Running This Application you agree to all Terms and Conditions
 Kstych Framework (c) Kstych Private Limited. All Rights Reserved.
+
 https://kstych.com
 
 
