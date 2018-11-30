@@ -7,7 +7,7 @@ ARG4=${4:-127.0.0.1}
 
 APIKEY=`cat /dev/urandom |head -c 32 | base64`
 
-if [[ "$(docker images -q framework 2> /dev/null)" == "" ]]; then
+if [[ "$(docker images -q kstych/framework 2> /dev/null)" == "" ]]; then
   if [ -f framework.tar ]; then
     echo "Importing framework.tar"
     docker load -i framework.tar
