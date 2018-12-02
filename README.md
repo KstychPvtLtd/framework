@@ -1,6 +1,6 @@
 # Framework
 LowCode framework for general purpose App development in a fraction of time
-
+![gif](https://kstych.com/custom/kstych.com/images/bg.gif)
 
 ## Installation
 1. Install Docker and Git
