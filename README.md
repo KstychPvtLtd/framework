@@ -1,5 +1,6 @@
 # Framework
 LowCode framework for general purpose App development in a fraction of time
+Visit https://kstych.com for more details.
 ![gif](https://kstych.com/custom/kstych.com/images/bg.gif)
 
 ## Installation
