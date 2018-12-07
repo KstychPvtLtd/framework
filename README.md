@@ -11,6 +11,10 @@ Visit https://kstych.com for more details.
 5. Use License code "localhost" when asked
 6. Default login : admin / yb9738z
 
+## Errors
+.env file not found : Check SeLinux Permission , file should be writable : ./kstych/custom/.env
+To do full reset : Delete ./kstych folder and run again.
+
 ## Features
 E-R Automation
 
@@ -26,9 +30,6 @@ Full spectrum customization
 
 Extended Views/Business Logic
 
-
-
-## Concerns
 
 
 
