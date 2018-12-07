@@ -4,7 +4,7 @@ Visit https://kstych.com for more details.
 ![gif](https://kstych.com/custom/kstych.com/images/bg.gif)
 
 ## Installation
-1. Install Docker and Git
+1. Install Docker and Git (on windows you can use VirtualBox or any other VM manager to run Linux)
 2. Clone this repository
 3. As root run : "sh kstych.sh"
 4. visit http://localhost once ready (application updates during run and it may download ~100MB of additional packages/files)
