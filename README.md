@@ -8,7 +8,8 @@ Visit https://kstych.com for more details.
 2. Clone this repository
 3. As root run : "sh kstych.sh"
 4. visit http://localhost once ready (application updates during run and it may download ~100MB of additional packages/files)
-5. Default login : admin / yb9738z
+5. Use License code "localhost" when asked
+6. Default login : admin / yb9738z
 
 ## Features
 E-R Automation
