@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ARG1=${1:-localhost}
-ARG2=${2:-http://localhost}
+ARG2=${2:-localhost}
 ARG3=${3:-localhost}
 ARG4=${4:-127.0.0.1}
 
@@ -29,7 +29,7 @@ if [ ! -f kstych/custom/.env ]; then
   APP_DEBUG=false
   APP_KEY=base64:$APIKEY
 
-  APP_URL=$ARG2
+  APP_URL=http://$ARG2
   APP_NAME=Kstych
 
   APP_ADMIN_DEBUG=true
