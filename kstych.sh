@@ -22,6 +22,7 @@ mkdir -p kstych/etc/letsencrypt
 chmod -R 777 kstych
 
 echo "/app" > kstych/custom/.gitignore
+echo ".env" >> kstych/custom/.gitignore
 
 if [ ! -f kstych/custom/.env ]; then
 
