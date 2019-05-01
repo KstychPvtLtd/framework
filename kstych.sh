@@ -31,7 +31,7 @@ if [ ! -f data/custom/.env ]; then
   APP_KEY=base64:$APIKEY
 
   APP_URL=http://$ARG2
-  APP_NAME=Kstych
+  APP_NAME=App
 
   APP_ADMIN_DEBUG=true
   app_title=Framework
