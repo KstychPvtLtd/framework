@@ -16,15 +16,15 @@ if [[ "$(docker images -q kstych/framework 2> /dev/null)" == "" ]]; then
   fi
 fi
 
-mkdir -p kstych/custom
-mkdir -p kstych/var/lib/mysql
-mkdir -p kstych/etc/letsencrypt
-chmod -R 777 kstych
+mkdir -p data/custom
+mkdir -p data/var/lib/mysql
+mkdir -p data/etc/letsencrypt
+chmod -R 777 data
 
-echo "/app" > kstych/custom/.gitignore
-echo ".env" >> kstych/custom/.gitignore
+echo "/app" > data/custom/.gitignore
+echo ".env" >> data/custom/.gitignore
 
-if [ ! -f kstych/custom/.env ]; then
+if [ ! -f data/custom/.env ]; then
 
   echo "APP_ENV=local
   APP_DEBUG=false
@@ -52,7 +52,7 @@ if [ ! -f kstych/custom/.env ]; then
   DB_CONNECTION=mysql
   DB_HOST=localhost
   DB_PORT=3306
-  DB_DATABASE=kstych_test
+  DB_DATABASE=app_test
   DB_USERNAME=root
   DB_PASSWORD=yb9738z
 
@@ -68,21 +68,21 @@ if [ ! -f kstych/custom/.env ]; then
   MAIL_USERNAME=
   MAIL_PASSWORD=
   MAIL_FROM_ADDRESS=siddharth@kstych.com
-  MAIL_FROM_NAME=KstychFramework
+  MAIL_FROM_NAME=Framework
   app_developer=siddharth@kstych.com
 
   AWS_ACCESS_KEY_ID=
   AWS_SECRET_ACCESS_KEY=
   AWS_DEFAULT_REGION=us-east-1
-  AWS_BUCKET=kstych-test
+  AWS_BUCKET=bucket-name
   AWS_URL=
 
   FILESYSTEM_DRIVER=local
   FILESYSTEM_CLOUD=s3
-  " > kstych/custom/.env
+  " > data/custom/.env
 
 fi
 
 
 echo "Running Framework Image"
-docker run -it -v `pwd`/kstych/var/lib/mysql:/var/lib/mysql -v `pwd`/kstych/custom:/home/Kstych/Framework/custom -v `pwd`/kstych/etc/letsencrypt:/etc/letsencrypt -p 80:80 -p 443:443 -p 8089:8089 -p 8088:8088 -e KSTYCH_LICENSE="$ARG1" -e KSTYCH_DOMAIN="$ARG2" kstych/framework
+docker run -it -v `pwd`/data/var/lib/mysql:/var/lib/mysql -v `pwd`/data/custom:/home/Kstych/Framework/custom -v `pwd`/data/etc/letsencrypt:/etc/letsencrypt -p 80:80 -p 443:443 -p 8089:8089 -p 8088:8088 -e KSTYCH_LICENSE="$ARG1" -e KSTYCH_DOMAIN="$ARG2" kstych/framework
