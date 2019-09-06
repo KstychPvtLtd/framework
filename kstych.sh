@@ -34,7 +34,7 @@ app_ip=$ARG4
 app_masterpassword=yb9738z
 
 asterisk_domain=$ARG3
-asterisk_slaves=$ARG4:1001:21000:1:240
+asterisk_slaves=$ARG4:1001:2000:1:240
 asterisk_manager=$ARG4
 asterisk_extensions=\"31332,_62XXXX!\"
 domain_alisas=
