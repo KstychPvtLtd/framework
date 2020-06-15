@@ -2,8 +2,7 @@
 
 ARG1=${1:-localhost}
 ARG2=${2:-localhost}
-ARG3=${3:-localhost}
-ARG4=${4:-127.0.0.1}
+ARG3=${3:-127.0.0.1}
 
 APIKEY=`cat /dev/urandom |head -c 32 | base64`
 
@@ -30,19 +29,19 @@ APP_NAME=App
 
 APP_ADMIN_DEBUG=true
 app_title=Framework
-app_ip=$ARG4
+app_ip=$ARG3
 app_masterpassword=yb9738z
 
-asterisk_domain=$ARG3
-asterisk_slaves=$ARG4:1001:2000:1:240
-asterisk_manager=$ARG4
+asterisk_slaves=$ARG3:1001:2000:1:240
+asterisk_manager=$ARG3
 asterisk_extensions=\"31332,_62XXXX!\"
+
 domain_alisas=
-
-LOG_CHANNEL=stack
-
 APP_Multiple_Logins=yes
 kDialer_keeplocalconf=0
+app_developer=siddharth@kstych.com
+
+LOG_CHANNEL=stack
 
 DB_CONNECTION=mysql
 DB_HOST=localhost
@@ -64,7 +63,6 @@ MAIL_USERNAME=
 MAIL_PASSWORD=
 MAIL_FROM_ADDRESS=siddharth@kstych.com
 MAIL_FROM_NAME=Framework
-app_developer=siddharth@kstych.com
 
 AWS_ACCESS_KEY_ID=
 AWS_SECRET_ACCESS_KEY=
@@ -80,4 +78,4 @@ fi
 
 
 echo "Running Framework Image"
-docker run --rm -it --shm-size=2gb -v `pwd`/data/var/lib/mysql:/var/lib/mysql:Z -v `pwd`/data/custom:/home/Kstych/Framework/custom:Z -v `pwd`/data/etc/letsencrypt:/etc/letsencrypt:Z -p 80:80 -p 443:443 -p 8089:8089 -p 8088:8088 -e KSTYCH_LICENSE="$ARG1" -e KSTYCH_DOMAIN="$ARG2" kstych/framework
+docker run --rm -it --shm-size=2gb -v `pwd`/data/var/lib/mysql:/var/lib/mysql:Z -v `pwd`/data/custom:/home/Kstych/Framework/custom:Z -v `pwd`/data/etc/letsencrypt:/etc/letsencrypt:Z -p 80:80 -p 443:443 -e KSTYCH_LICENSE="$ARG1" -e KSTYCH_DOMAIN="$ARG2" kstych/framework
