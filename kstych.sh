@@ -18,8 +18,7 @@ then
 fi
 
 $COMMAND network create -d bridge kstych-framework || true
-
-$COMMAND container rm kstych-framework
+$COMMAND container rm kstych-framework || true
 
 $COMMAND run --rm -it --shm-size=2gb \
                 --network=kstych-framework \
