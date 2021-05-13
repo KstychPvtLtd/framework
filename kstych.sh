@@ -17,8 +17,8 @@ then
     COMMAND="docker"
 fi
 
-$COMMAND network create -d bridge kstych-framework || true
-$COMMAND container rm kstych-framework || true
+$COMMAND network create -d bridge kstych-framework > /dev/null 2>&1
+$COMMAND container rm kstych-framework  > /dev/null 2>&1
 
 $COMMAND run --rm -it --shm-size=2gb \
                 --network=kstych-framework \
@@ -30,4 +30,4 @@ $COMMAND run --rm -it --shm-size=2gb \
                 -e KSTYCH_LICENSE="$ARG1" -e KSTYCH_DOMAIN="$ARG2" -e KSTYCH_IP="$ARG3" \
       kstych/framework
 
-#$COMMAND network rm kstych-framework
+$COMMAND network rm kstych-framework > /dev/null 2>&1
