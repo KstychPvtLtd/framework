@@ -23,6 +23,7 @@ $COMMAND container rm kstych-framework  > /dev/null 2>&1
 $COMMAND run --rm -it --shm-size=2gb \
                 --network=kstych-framework \
                 --name=kstych-framework \
+                --pids-limit 10000 \
                 -v `pwd`/data/var/lib/mysql:/var/lib/mysql:Z \
                 -v `pwd`/data/custom:/home/Kstych/Framework/custom:Z \
                 -v `pwd`/data/etc/letsencrypt:/etc/letsencrypt:Z \
