@@ -20,7 +20,7 @@ cd $BASEPATH/framework
 
 if ! /usr/bin/screen -list | grep -q $APPNAME; then
   date
-  /usr/bin/screen -d -m -S $APPNAME bash -c "cd BASEPATH/framework;./kstych.sh $LICENSE $DOMAIN"
+  /usr/bin/screen -d -m -S $APPNAME bash -c "cd $BASEPATH/framework;./kstych.sh $LICENSE $DOMAIN"
 fi
 
 nowtime=$(date +%k%M)
