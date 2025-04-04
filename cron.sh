@@ -1,13 +1,14 @@
 #!/bin/bash
 # Crontab
-# * * * * * BASEPATH/framework/cron.sh APPNAME BASEPATH DOMAIN LICENSE > /var/log/kstych-cron.log 2>&1
+# * * * * * BASEPATH/cron.sh APPNAME DOMAIN LICENSE > /var/log/kstych-cron.log 2>&1
 
 export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
+BASEPATH=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
 APPNAME=${1:-app}
-BASEPATH=${2:-/mnt/app}
-DOMAIN=${3:-localhost}
-LICENSE=${4:-localhost}
+DOMAIN=${2:-localhost}
+LICENSE=${3:-localhost}
 
 COMMAND="podman"
 if ! command -v $COMMAND &> /dev/null
@@ -16,11 +17,11 @@ then
 fi
 
 
-cd $BASEPATH/framework
+cd $BASEPATH
 
 if ! /usr/bin/screen -list | grep -q $APPNAME; then
   date
-  /usr/bin/screen -d -m -S $APPNAME bash -c "cd $BASEPATH/framework;./kstych.sh $LICENSE $DOMAIN"
+  /usr/bin/screen -d -m -S $APPNAME bash -c "cd $BASEPATH;./kstych.sh $LICENSE $DOMAIN"
 fi
 
 nowtime=$(date +%k%M)
