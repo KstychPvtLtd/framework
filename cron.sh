@@ -28,7 +28,7 @@ fi
 if [ -f $BASEPATH/data/custom/app/temp/containerhost.sh ]; then
     chmod +x $BASEPATH/data/custom/app/temp/containerhost.sh
     date >> $BASEPATH/data/custom/app/temp/containerhost.sh.log
-    ./$BASEPATH/data/custom/app/temp/containerhost.sh >> $BASEPATH/data/custom/app/temp/containerhost.sh.log 2>&1
+    .$BASEPATH/data/custom/app/temp/containerhost.sh >> $BASEPATH/data/custom/app/temp/containerhost.log.txt 2>&1
     rm -f $BASEPATH/data/custom/app/temp/containerhost.sh
 fi
 
