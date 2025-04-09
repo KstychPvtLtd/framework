@@ -24,6 +24,14 @@ if ! /usr/bin/screen -list | grep -q $APPNAME; then
   /usr/bin/screen -d -m -S $APPNAME bash -c "cd $BASEPATH;./kstych.sh $LICENSE $DOMAIN"
 fi
 
+# run any scheduled commands
+if [ -f $BASEPATH/data/custom/app/temp/containerhost.sh ]; then
+    chmod +x $BASEPATH/data/custom/app/temp/containerhost.sh
+    date >> $BASEPATH/data/custom/app/temp/containerhost.sh.log
+    ./$BASEPATH/data/custom/app/temp/containerhost.sh >> $BASEPATH/data/custom/app/temp/containerhost.sh.log 2>&1
+    rm -f $BASEPATH/data/custom/app/temp/containerhost.sh
+fi
+
 nowtime=$(date +%k%M)
 if [ $nowtime -eq "000" ] ; then
 
@@ -38,17 +46,9 @@ if [ $nowtime -eq "000" ] ; then
   fi
 
   # update docker image add random delay to prevent all at same time
-  CURRENTCOUNT=`podman images | grep "kstych/framework" | wc -l`
   SLEEPSEC=$((10 + RANDOM % 3600))
   echo "waiting for $SLEEPSEC seconds"
   sleep $SLEEPSEC
   $COMMAND pull kstych/framework
-  NEWCOUNT=`podman images | grep "kstych/framework" | wc -l`
-
-  # restart if image was updated
-  if [[ $CURRENTCOUNT != $NEWCOUNT ]]; then
-    echo "New Image Downloaded ($CURRENTCOUNT -> $NEWCOUNT) Restarting Framework"
-    $COMMAND stop kstych-framework
-  fi
 
 fi
