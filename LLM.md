@@ -9,6 +9,7 @@ Remember the following instructions when creating code and files for the require
 * **Assets:** The `ext/assets` folder is mapped to Laravel's `public/custom` folder.
     * Example: A file at `ext/assets/app.js` will be accessible via the URL `http://localhost/custom/app.js`.
     * Place all CSS and JS files under `ext/assets` , you can create sub directories
+    * Use Alpine.js for lightweight JavaScript interactions.
 
 * **Modules** : This application uses first path as a module for example http://localhost/admin will be module 'Admin' and will have folders `ext/packages/Admin` , `ext/views/admin` , for livewire you can also create sub dirs within the main module folders, assets for module specific css/js/images can be placed under `ext/assets/admin` and any common assets can go in `ext/assets`
 
@@ -21,7 +22,7 @@ Remember the following instructions when creating code and files for the require
     * PHP Classes: Livewire component classes are mapped to the `\App\Custom` namespace.
         * Example: The Livewire alias `'module.livewire.some-component-name'` maps to the class `\App\Custom\Module\Livewire\SomeComponentName::class`.
         * Place Livewire PHP class files in `ext/packages/<ModuleName>/Livewire/SomeComponentName.php`.
-    * Blade Views: Livewire component views should be placed in `ext/views/module/livewire/`, typically mirroring the component's alias structure.
+    * Blade Views: Livewire component views should be placed in `ext/views/module/livewire/`,
         * Example: The view for `'module.livewire.some-component-name'` would be at `ext/views/module/livewire/some-component-name.blade.php` and referenced as `view('custom.module.livewire.some-component-name')`.
 
 * **Controllers:**
@@ -30,7 +31,8 @@ Remember the following instructions when creating code and files for the require
     * Controller files are automatically mapped and should be located at `ext/packages/<ModuleName>/Controller/<ModuleName>.php`.
     * Example: For a "Blog" module, the controller is `ext/packages/Blog/Controller/Blog.php`.
     * Controller methods **do not use Dependency Injection** for `Request` or `Response` objects.
-    * Use Laravel helper functions like `request()`, `response()`, `view()`, or import and use the `Illuminate\Http\Request` facade/class directly.
+    * Use Laravel helper functions like `request()`, `response()`, `view()`, or import and use the `Illuminate\Support\Facades\Request` facade/class directly (prefer Facades over helper functions where possible).
+    * Donot use these module names as they are already used for other functions "App","Admin", "User","Designer","Auth" , foe example if you need to create a Blog Admin, use BlogAdmin as module name
 
 * **Route Mappings (example using "blog" module):**
     * `GET /blog` -> `blog.index` -> `Controller/Blog.php @ index`
@@ -43,12 +45,18 @@ Remember the following instructions when creating code and files for the require
     *(Note: Standard RESTful practice uses `PUT/PATCH` for update and `DELETE` for destroy. we will need to use laravel @method('PUT') @method('DELETE') along with @csrf where needed)*
 
 * **Models:**
-    * Create All model migration using only following columns types: integer, biginteger, unsignedbiginteger, string, data , datetime, timestamp, decimal, longtext. (eg if boolean is required use integer with 0/1 values similarly limit the columns to provided types only)
+    * Create All model migration using only following columns types: integer, biginteger, unsignedbiginteger, string, data , datetime, timestamp, decimal, longtext. (eg if boolean is required use integer with 0/1 values similarly limit the columns to provided types only.)
     * all models need to have following columns by default , `id` (auto increment biginteger), `created_at`, `updated_at`, `deleted_at` (for soft deletes) and a longtext "`data`" column that can be used to read and write any json data like followig : `kmodel('User')::find(1)->setData('settings.somekey','some vaue');` and `kmodel('User')::find(1)->getData('settings.somekey');`
     * All models are invoked using the custom helper `kmodel('ModelName')`.
     * Example: `ModelName::make()` will be written as `kmodel('ModelName')::make()`.
     * Example: `User::find(1)` will be written as `kmodel('User')::find(1)`.
     * Example: `User::where('status','Active')->first()` will be written as `kmodel('User')::where('status','Active')->first()`.
+    * Donot create any Model classes, you can assume kmodel('Model') will work for any modle that has a migration created
+    * always use full eloquent queries and not Scopes or custom relationships
+    * for belongs to one / has one , belongs to many / has many realtions you can assume the relationship to be already existing example `Profile` model having a column `user_id` can be accessed as `kmodel('Profile')::find(1)->user;` or `kmodel('Profile')::with('user')->find(1);` (relation name will be in lower case always)
+
+* **Authentication:**
+    * Assume Auth module already exists, so you dont need to create login/logout functionality anywhere, you can use `url('auth?action=login')` , `url('auth?action=logout')` , `url('auth?action=signup')` whereever required
 
 * **Content security policy** blocks all externally loaded scripts , styles, images and fonts, make sure to download all assets before using.
 
@@ -78,12 +86,6 @@ Remember the following instructions when creating code and files for the require
 * Implement responsive design and dark mode using Tailwind and daisyUI utilities.
 * Optimize for accessibility (e.g., `aria-attributes`) when using components.
 
-## JavaScript
-
-* Use Alpine.js for lightweight JavaScript interactions.
-* **All custom JavaScript files should be placed in `ext/assets/js/`.** or sub directories for module specific javascript
-* Example: `ext/assets/js/app.js` is accessed via `http://localhost/custom/js/app.js`.
-
 
 ## General Instructions ##
 
@@ -100,5 +102,4 @@ Remember the following instructions when creating code and files for the require
 * Prefer iteration and modularization over duplication.
 * Use descriptive variable, method, and component names.
 
-based on above instruction you need to Implement following requirements
-
+based on above instruction you need to Implement provided requirements
