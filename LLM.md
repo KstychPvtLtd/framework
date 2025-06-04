@@ -4,7 +4,7 @@ Remember the following instructions when creating code and files for the require
 
 ## Framework specific notes
 
-* **Folders** : Create all files *only* in these folders: `ext/assets`, `ext/packages`, `ext/views`.
+* **Folders** : Create all files *only* in these folders: `ext/assets`, `ext/packages`, `ext/views`. (additionally tests will go under `ext/tests` and migrations can be under `database/migrations`)
 
 * **Assets:** The `ext/assets` folder is mapped to Laravel's `public/custom` folder.
     * Example: A file at `ext/assets/app.js` will be accessible via the URL `http://localhost/custom/app.js`.
@@ -61,9 +61,11 @@ Remember the following instructions when creating code and files for the require
 * **Content security policy** blocks all externally loaded scripts , styles, images and fonts, make sure to download all assets before using.
 
 
-* **Routing** : Use all routes using `url()` helper eg `url('/blog/1')` and not `route()` helper
+* **Routing** : Use all routes and endpoints using `url()` helper eg `url('/blog/1')` and not `route('blog.show')` helper
 
 * **Queues** : Implement Laravel's built-in scheduling features for recurring tasks. you can use this custom function to schedule any class/funtion as a background job `\App\Kstych\Jobs\Job::dispatch('\App\Custom\Module\Class@function',[$params])->onQueue('default');`
+
+* **Tests** : create all unit and integration tests under `ext/tests` folder, remember that namespace of a test class `ext/tests/Unit/SomeTest.php` will be `Tests\Custom\Unit` , ie the ext/tests folder is mapped to laravels "tests/Custom" folder
 
 
 ## PHP/Laravel
