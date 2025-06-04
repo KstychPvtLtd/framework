@@ -58,6 +58,13 @@ Remember the following instructions when creating code and files for the require
     * always use full eloquent queries and not Scopes or custom relationships
     * for belongs to one / has one , belongs to many / has many realtions you can assume the relationship to be already existing example `Profile` model having a column `user_id` can be accessed as `kmodel('Profile')::find(1)->user;` or `kmodel('Profile')::with('user')->find(1);` (relation name will be in lower case always)
 
+* **File Uploads:**
+    * Framework uses following method to upload files.
+    * a model needs to have a column to save the file id (unsignedBigInteger), eg "photo" column under User model,
+    * function to upload file `kmodel('User')::find(1)->saveData(['photo'=>[['file',$uploadedfile->getRealPath(),$uploadedfile->getClientOriginalName(),$uploadedfile->getMimeType()]]])`
+    * if there is a validation error then it will throw  `ValidationException`
+    * after file is uploaded, its URL can be retrived by calling `Kmodel('User')::find(1)->getFileLink('photo');`
+
 * **Authentication:**
     * Assume Auth module already exists, so you dont need to create login/logout functionality anywhere, you can use `url('auth?action=login')` , `url('auth?action=logout')` , `url('auth?action=signup')` whereever required
 
