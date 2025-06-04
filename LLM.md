@@ -43,6 +43,9 @@ Remember the following instructions when creating code and files for the require
     * `POST /blog/{key}` (for update, typically `PUT/PATCH`) -> `blog.update` -> `Controller/Blog.php @ update`
     * `POST /blog/{key}` (for delete, typically `DELETE`) -> `blog.destroy` -> `Controller/Blog.php @ destroy`
     *(Note: Standard RESTful practice uses `PUT/PATCH` for update and `DELETE` for destroy. we will need to use laravel @method('PUT') @method('DELETE') along with @csrf where needed)*
+    
+* **SubModules**
+    * if a module becomes too large, you can create multiple resource controllers for same module, split the controller into multiple controller per path, example b`log/asset` will be controller `ext/packages/Blog/Controller/Asset.php` and `blog/profile` will be `ext/packages/Blog/Controller/Profile.php` , each controller should be resource controller and only have the laravel default resource methods, routes will work eg `/blog/asset/1` will call the `Asset` controller's `show($id)` function and so on.
 
 * **Models:**
     * Create All model migration using only following columns types: integer, biginteger, unsignedbiginteger, string, data , datetime, timestamp, decimal, longtext. (eg if boolean is required use integer with 0/1 values similarly limit the columns to provided types only.)
