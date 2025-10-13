@@ -2,7 +2,6 @@
 
 ARG1=${1:-localhost}
 ARG2=${2:-localhost}
-ARG3=${3:-127.0.0.1}
 
 mkdir -p data/custom
 mkdir -p data/var/lib/mysql
@@ -28,5 +27,5 @@ $COMMAND run --rm -it --shm-size=2gb \
                 -v `pwd`/data/custom:/home/Kstych/Framework/custom:Z \
                 -v `pwd`/data/etc/letsencrypt:/etc/letsencrypt:Z \
                 -p 80:80 -p 443:443 \
-                -e KSTYCH_LICENSE="$ARG1" -e KSTYCH_DOMAIN="$ARG2" -e KSTYCH_IP="$ARG3" \
+                -e KSTYCH_LICENSE="$ARG1" -e KSTYCH_DOMAIN="$ARG2" \
       kstych/framework
