@@ -51,5 +51,6 @@ if [ $nowtime -eq "000" ] ; then
   echo "waiting for $SLEEPSEC seconds"
   sleep $SLEEPSEC
   $COMMAND pull kstych/framework
+  $COMMAND image prune --force
 
 fi
