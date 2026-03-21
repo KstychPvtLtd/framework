@@ -23,6 +23,7 @@ $COMMAND run --rm -it --shm-size=2gb \
                 --network=kstych-framework \
                 --pids-limit 10000 \
                 --name=kstych-framework \
+                --log-opt max-size=500m \
                 -v `pwd`/data/var/lib/mysql:/var/lib/mysql:Z \
                 -v `pwd`/data/custom:/home/Kstych/Framework/custom:Z \
                 -v `pwd`/data/etc/letsencrypt:/etc/letsencrypt:Z \
