@@ -8,6 +8,10 @@ mkdir -p data/var/lib/mysql
 mkdir -p data/etc/letsencrypt
 chmod -R 777 data
 
+pkill socat
+rm -f /var/run/kstych-cmd.sock
+socat UNIX-LISTEN:/var/run/kstych-cmd.sock,fork,mode=600 EXEC:/bin/bash,pty,setsid,ctty,stderr &
+
 echo "Running Kstych/Framework"
 
 COMMAND="podman"
@@ -27,6 +31,9 @@ $COMMAND run --rm -it --shm-size=2gb \
                 -v `pwd`/data/var/lib/mysql:/var/lib/mysql:Z \
                 -v `pwd`/data/custom:/home/Kstych/Framework/custom:Z \
                 -v `pwd`/data/etc/letsencrypt:/etc/letsencrypt:Z \
+                -v /var/run/kstych-cmd.sock:/var/run/kstych-cmd.sock \
                 -p 80:80 -p 443:443 \
                 -e KSTYCH_LICENSE="$ARG1" -e KSTYCH_DOMAIN="$ARG2" \
       kstych/framework
+
+pkill socat
