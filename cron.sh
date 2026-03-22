@@ -1,6 +1,8 @@
 #!/bin/bash
 # Crontab
 # * * * * * BASEPATH/cron.sh APPNAME DOMAIN LICENSE > /var/log/kstych-cron.log 2>&1
+# Host
+# dnf install -y docker git socat cronie wget
 
 export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
